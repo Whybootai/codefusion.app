@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codefusion - Advanced Code Editor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+</head>
+
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <h2>Codefusion is Loading</h2>
+        <div id="loading-bar-container">
+            <div id="loading-bar"></div>
+        </div>
+    </div>
+
+
+    <div id="code-toggle-button" onclick="toggleEditorsVisibility()">
+        <i class="fas fa-code"></i>
+    </div>
+
+    <div class="container">
+        <h1>Codefusion</h1>
+        <div id="header-buttons">
+            <button class="feedback-button" onclick="sendFeedback()"><i class="fas fa-envelope"></i> Feedback </button>
+            <button class="reset-button" onclick="resetAll()"><i class="fas fa-sync"></i> Reset </button>
+            <i class="fas fa-question-circle" id="user-manual-icon" onclick="toggleUserManual()"></i>
+            <i class="fas fa-expand-arrows-alt" id="full-page-button" onclick="toggleFullPageView()"
+                style="cursor: pointer;"></i>
+            <i class="fas fa-minus" id="minimize-button" onclick="minimizeCode()"></i>
+
+        </div>
+        <!-- Mode Selection -->
+        <select id="modeSelect">
+            <option value="html">HTML</option>
+        </select>
+
+        <!-- Editors Container -->
+        <div class="editor-container">
+            <textarea id="htmlEditor" class="editor" placeholder="Write your HTML code here..."></textarea>
+            <textarea id="cssEditor" class="editor" placeholder="Write your CSS code here..."></textarea>
+            <textarea id="jsEditor" class="editor" placeholder="Write your JavaScript code here..."></textarea>
+        </div>
+        <div id="full-page-view" class="">
+            <button class="back-button" onclick="toggleFullPageView()"><i class="fas fa-arrow-left"></i></button>
+            <iframe id="preview-fullpage"></iframe>
+        </div>
+        <!-- Action Buttons -->
+        <div class="buttons">
+            <button onclick="updatePreview()"><i class="fas fa-sync-alt"></i><span class="tooltip">Update
+                    Preview</span></button>
+            <button onclick="toggleEditors()"><i class="fas fa-code"></i><span class="tooltip">Toggle
+                    Editors</span></button>
+            <button onclick="segregateCode()"><i class="fas fa-code-branch"></i><span class="tooltip">Segregate
+                    Code</span></button>
+            <button onclick="copyCode('html')"><i class="fab fa-html5"></i><span class="tooltip">Copy
+                    HTML</span></button>
+            <button onclick="copyCode('css')"><i class="fab fa-css3-alt"></i><span class="tooltip">Copy
+                    CSS</span></button>
+            <button onclick="copyCode('js')"><i class="fab fa-js"></i><span class="tooltip">Copy
+                    JavaScript</span></button>
+            <button onclick="resetEditors()"><i class="fas fa-trash"></i><span class="tooltip">Reset
+                    Editor</span></button>
+            <button id="preview-fullscreen-button" onclick="togglePreviewFullscreen()"><i
+                    class="fas fa-expand"></i></button>
+        </div>
+        <!-- Console Output -->
+        <div class="console" id="console-output">Console output will appear here...</div>
+        <div id="user-manual-popup">
+            <span class="close-button" onclick="toggleUserManual()">×</span>
+            <h2>User Manual</h2>
+            <ul>
+                <li><strong>Mode Selection:</strong> Choose between HTML, CSS, and JS to adjust the code that appears in the
+                    editor areas.
+                </li>
+                <li><strong>Editor:</strong> The editor sections on the left are used to input the HTML, CSS, and JS code
+                    for the application.</li>
+                <li><strong>Update Preview:</strong> Updates the preview iframe with any changes done on the editor
+                    sections.
+                </li>
+                <li><strong>Toggle Editor:</strong> Allows you to show or hide the editor sections.
+                </li>
+                <li><strong>Segregate Code:</strong> Seperates the code accordingly when using HTML.
+                </li>
+                <li><strong>Copy Code (HTML, CSS, JS):</strong> Copies the code from the selected section
+                </li>
+                <li><strong>Reset Editor:</strong> Clear all the contents from the editors.
+                </li>
+                <li><strong>Full page View:</strong> Expands the preview to fill the entire page.
+                </li>
+                <li><strong>Preview Fullscreen:</strong> Expands the preview section to full screen in the main window.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Chatbot Modal -->
+    <div id="chat-modal" class="">
+        <span class="close-button" onclick="toggleChatModal()">×</span>
+        <div class="messages" id="chat-messages">
+        </div>
+        <button class="reset-button" onclick="resetChat()">Reset Chat</button>
+        <div class="input-area">
+            <textarea id="code-assistant-input"
+                placeholder="What kind of code do you need assistance with?"></textarea>
+            <button onclick="sendCodeQuery()"> <i class="fas fa-paper-plane"></i></button>
+        </div>
+        <div class="thinking" style="display: none">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+    <!-- Floating Action Button -->
+    <div class="floating-btn" onclick="toggleChatModal()">
+        <i class="fas fa-plus"></i>
+    </div>
+    <div id="notification-container"></div>
+    <!--Minimzed code Area-->
+    <div class="minimized-container" id="minimized-code-container">
+        <span class="close-minimize" onclick="toggleMinimize()">×</span>
+    </div>
+
+    <iframe id="preview"></iframe>
+
+    
+
+</body>
+</html>
